@@ -1,5 +1,7 @@
 --4 
-create table tableB as select f_codedesc as liczba_budynkow from popp p, majrivers m where Contains(Buffer(m.Geometry, 100000), p.Geometry);
+create table tableB as select f_codedesc 
+as liczba_budynkow from popp p, majrivers m 
+where Contains(Buffer(m.Geometry, 100000), p.Geometry);
 
 select * from tableB;
 
