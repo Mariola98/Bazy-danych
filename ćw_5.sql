@@ -1,4 +1,4 @@
-  create database cwiczenie_5;
+create database cwiczenie_5;
 CREATE EXTENSION postgis;
 create table obiekty
 (
@@ -20,21 +20,17 @@ values ('obiekt5', ST_GeomFromText('GEOMETRYCOLLECTION(MULTIPOINT(30 30 59 , 38 
 insert into obiekty 
 values ('obiekt6', ST_GeomFromText('GEOMETRYCOLLECTION(LINESTRING(1 1, 3 2), POINT(4 2))', -1));
 
---1
 SELECT ST_Area(ST_Buffer(ST_ShortestLine(o1.geometria, o2.geometria), 5)) 
 FROM obiekty o1, obiekty o2 WHERE o1.nazwa='obiekt3' AND o2.nazwa='obiekt4';
 
---2
 SELECT ST_MakePolygon( ST_AddPoint(foo.open_line, ST_StartPoint(foo.open_line)) )
 FROM ( SELECT geometria As open_line from obiekty where nazwa='obiekt4') As foo;
 
---3
 insert INTO obiekty 
 values ('obiekt7', ST_GeomFromText('GEOMETRYCOLLECTION(LINESTRING(7 15, 10 17),LINESTRING(10 17, 12 13),LINESTRING(12 13, 7 15),
 LINESTRING(20 20, 25 25),LINESTRING(25 25, 27 24),LINESTRING(27 24, 25 22),
 LINESTRING(25 22, 26 21),LINESTRING(26 21, 22 19),LINESTRING(22 19, 20.5 19.5))', -1));
 
---4
 SELECT ST_Area(ST_Buffer(geometria, 5)) 
 as Pole FROM obiekty 
 where ST_HasArc(geometria)=false;
