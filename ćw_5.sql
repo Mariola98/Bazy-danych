@@ -35,4 +35,4 @@ SELECT ST_Area(ST_Buffer(geometria, 5))
 as Pole FROM obiekty 
 where ST_HasArc(geometria)=false;
 
-SELECT SUM(ST_Area(ST_Buffer(geometria,5))) as Calkowite_Pole FROM obiekty where ST_HasArc(geometria)=false;
+select nazwa, ST_Area(ST_Buffer(geometria, 5)) from obiekty where not ST_HasArc(geometria);
